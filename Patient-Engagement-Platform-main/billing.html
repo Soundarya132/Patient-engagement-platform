@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Billing and Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .total {
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #8728a7;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #97a199;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .feedback {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Medicine Billing and Payment</h2>
+
+    <!-- Patient Information Section -->
+    <div class="form-group">
+      <label for="patientName">Patient Name:</label>
+      <input type="text" id="patientName" placeholder="Enter patient name">
+    </div>
+    <div class="form-group">
+      <label for="patientID">Patient ID:</label>
+      <input type="text" id="patientID" placeholder="Enter patient ID">
+    </div>
+
+    <!-- Billing Form -->
+    <form id="billingForm">
+      <div class="form-group">
+        <label for="medicine">Medicine:</label>
+        <input type="text" id="medicine" placeholder="Enter medicine name" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price ($):</label>
+        <input type="number" id="price" step="0.01" placeholder="Enter price" required>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" placeholder="Enter quantity" required>
+      </div>
+      <button type="button" onclick="addMedicine()">Add Medicine</button>
+    </form>
+
+    <!-- Bill Details -->
+    <h3>Bill Details</h3>
+    <table id="billTable">
+      <thead>
+        <tr>
+          <th>Medicine</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="total">Subtotal</td>
+          <td id="subtotal" class="total">$0.00</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="total">Discount (%)</td>
+          <td id="discount">0%</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="total">Tax (%)</td>
+          <td id="tax">0%</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="total">Grand Total</td>
+          <td id="grandTotal" class="total">$0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Actions -->
+    <button onclick="processPayment()">Pay Now</button>
+    <button onclick="printBill()">Print Bill</button>
+    <button onclick="exportBill()">Export Bill</button>
+
+    <!-- Feedback Section -->
+    <div class="feedback">
+      <h4>Leave Feedback:</h4>
+      <textarea id="feedback" rows="4" cols="50" placeholder="Your comments..."></textarea><br>
+      <button onclick="submitFeedback()">Submit Feedback</button>
+    </div>
+  </div>
+
+  <script>
+    let subtotal = 0;
+    let discount = 0;
+    let tax = 0;
+    let grandTotal = 0;
+
+    function addMedicine() {
+      const medicine = document.getElementById('medicine').value;
+      const price = parseFloat(document.getElementById('price').value);
+      const quantity = parseInt(document.getElementById('quantity').value);
+
+      if (medicine && !isNaN(price) && !isNaN(quantity)) {
+        const total = price * quantity;
+        subtotal += total;
+
+        const tableBody = document.querySelector('#billTable tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${medicine}</td>
+          <td>${price.toFixed(2)}</td>
+          <td>${quantity}</td>
+          <td>${total.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(row);
+
+        updateTotals();
+        document.getElementById('billingForm').reset();
+      } else {
+        alert('Please enter valid details.');
+      }
+    }
+
+    function updateTotals() {
+      discount = parseFloat(document.getElementById('discount').textContent) || 0;
+      tax = parseFloat(document.getElementById('tax').textContent) || 0;
+
+      const discountAmount = (subtotal * discount) / 100;
+      const taxAmount = (subtotal * tax) / 100;
+      grandTotal = subtotal - discountAmount + taxAmount;
+
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('grandTotal').textContent = `$${grandTotal.toFixed(2)}`;
+    }
+
+    function processPayment() {
+      if (grandTotal > 0) {
+        alert('Payment processed. Thank you!');
+      } else {
+        alert('No items to pay for.');
+      }
+    }
+
+    function printBill() {
+      window.print();
+    }
+
+    function exportBill() {
+      const content = document.querySelector('.container').innerHTML;
+      const blob = new Blob([content], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bill.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function submitFeedback() {
+      const feedback = document.getElementById('feedback').value;
+      if (feedback) {
+        alert('Feedback submitted. Thank you!');
+        document.getElementById('feedback').value = '';
+      } else {
+        alert('Please enter your feedback.');
+      }
+    }
+  </script>
+</body>
+</html>

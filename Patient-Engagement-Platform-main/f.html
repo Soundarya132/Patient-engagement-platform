@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call with Doctor</title>
+    <link rel="stylesheet" type="text/css" href="fstyle.css">
+</head>
+<body>
+    <div class="video-call-container">
+        <h2>Video Call with Doctor</h2>
+        <div class="video-container">
+            <!-- Video element for doctor's video -->
+            <video id="doctor-video" width="500" height="400" autoplay></video>
+            <!-- Video element for patient's video -->
+            <video id="patient-video" width="200" height="150" autoplay muted></video>
+        </div>
+        <!-- Controls for video call -->
+        <div class="controls">
+            <button id="start-call">Start Call</button>
+            <button id="end-call">End Call</button>
+        </div>
+    </div>
+    <script src="fscript.js"></script>
+</body>
+</html>

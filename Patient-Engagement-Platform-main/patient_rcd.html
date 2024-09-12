@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Record History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .medical-record-history {
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .medical-record-history h3 {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .medical-record-history p {
+            font-size: 1.1em;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+        .nav-tabs .nav-link {
+            border-radius: 0;
+            border: 1px solid #007bff;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .list-group-item {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            background-color: #f1f1f1;
+            transition: background-color 0.3s;
+        }
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+        .list-group-item::before {
+            content: "\2022";
+            color: #1a6ec9;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .list-group-item .bi {
+            margin-right: 10px;
+            color: #286eb9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="medical-record-history card">
+                    <h3>Medical Record History</h3>
+                    <p>Patient Name: Monika</p>
+                    <div class="record-history">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="conditions-tab" data-toggle="tab" href="#conditions" role="tab" aria-controls="conditions" aria-selected="true">
+                                    <i class="bi bi-heart-pulse"></i> Conditions
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="medications-tab" data-toggle="tab" href="#medications" role="tab" aria-controls="medications" aria-selected="false">
+                                    <i class="bi bi-capsule"></i> Medications
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="surgeries-tab" data-toggle="tab" href="#surgeries" role="tab" aria-controls="surgeries" aria-selected="false">
+                                    <i class="bi bi-scissors"></i> Surgeries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="allergies-tab" data-toggle="tab" href="#allergies" role="tab" aria-controls="allergies" aria-selected="false">
+                                    <i class="bi bi-exclamation-triangle"></i> Allergies
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="conditions" role="tabpanel" aria-labelledby="conditions-tab">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Diabetes - Controlled with medication</li>
+                                    <li class="list-group-item">Hypertension - Under management</li>
+                                    <li class="list-group-item">Asthma - Seasonal</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="medications" role="tabpanel" aria-labelledby="medications-tab">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Metformin - 500 mg, twice daily</li>
+                                    <li class="list-group-item">Lisinopril - 10 mg, once daily</li>
+                                    <li class="list-group-item">Albuterol - As needed</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="surgeries" role="tabpanel" aria-labelledby="surgeries-tab">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Appendectomy (2010)</li>
+                                    <li class="list-group-item">Cholecystectomy (2015)</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="allergies" role="tabpanel" aria-labelledby="allergies-tab">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Penicillin</li>
+                                    <li class="list-group-item">Nut allergies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

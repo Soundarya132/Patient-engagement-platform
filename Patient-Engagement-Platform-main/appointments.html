@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#">Patient Engagement Platform</a>
+                <div class="navbar-links">
+                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link active" href="#">Appointment Booking</a>
+                </div>
+            </div>
+        </nav>
+        <h1>Book Your Slot Now and Save Your Time</h1>
+    </header>
+    
+    <main>
+        <section class="appointment-booking">
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="mobile">Mobile Number:</label>
+                            <input type="text" id="mobile" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="date">Appointment Date:</label>
+                            <input type="date" id="date" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Book Appointment</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="patient-details">
+            <div class="container">
+                <h2>Patient Details and Address</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <label for="patientName">Patient Name:</label>
+                            <input type="text" id="patientName" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="age">Patient Age:</label>
+                            <input type="number" id="age" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="city">City:</label>
+                            <select id="city" class="form-select">
+                                <option value="arrumbakkam">Arrumbakkam</option>
+                                <option value="saligramam">Saligramam</option>
+                                <option value="nsk nagar">NSK Nagar</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="slot">Appointment Slot:</label>
+                            <select id="slot" class="form-select">
+                                <option value="8.00-9.00 PM">8:00-9:00 PM</option>
+                                <option value="10.30-11.30 PM">10:30-11:30 PM</option>
+                                <option value="3.00-4.00 AM">3:00-4:00 AM</option>
+                                <option value="5.00-6.00 AM">5:00-6:00 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Book Appointment</button>
+                </form>
+            </div>
+        </section>
+        
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-info">
+            <div class="container">
+                <h2>Apollo Hospital</h2>
+                <p>For more info contact: +984632190</p>
+                <a href="mailto:appolohospital@gmail.com">appolohospital@gmail.com</a>
+                <p>No 16, Kamarajar Salai, Saligramam, Chennai-105</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Patient Engagement Platform</p>
+        </div>
+    </footer>
+</body>
+</html>

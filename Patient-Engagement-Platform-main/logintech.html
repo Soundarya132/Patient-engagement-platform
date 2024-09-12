@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .message {
+      color: red;
+      margin-bottom: 10px;
+    }
+    .links {
+      text-align: center;
+    }
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <div id="message" class="message"></div>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Email" required aria-label="Email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Password" required aria-label="Password">
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="rememberMe"> Remember me
+        </label>
+      </div>
+      <button type="submit">Login</button>
+      <div class="links">
+        <a href="/forgot-password">Forgot Password?</a><br>
+        <a href="/register">Don't have an account? Register here</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    async function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('rememberMe').checked;
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, rememberMe })
+        });
+        const data = await response.json();
+        const messageElement = document.getElementById('message');
+
+        if (data.success) {
+          window.location.href = '/dashboard';
+        } else {
+          messageElement.textContent = 'Login failed: ' + data.message;
+        }
+      } catch (error) {
+        console.error('Login failed', error);
+        document.getElementById('message').textContent = 'An error occurred. Please try again.';
+      }
+    }
+  </script>
+</body>
+</html>

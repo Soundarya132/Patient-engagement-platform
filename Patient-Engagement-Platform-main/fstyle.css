@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.video-call-container {
+    width: 800px;
+    height: 600px;
+    border: 1px solid #761c1c;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.video-container {
+    position: relative;
+}
+
+#doctor-video {
+    border: 1px solid #992020;
+}
+
+#patient-video {
+    border: 1px solid #150101;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: rgb(22, 175, 168);
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button:disabled {
+    background-color: #010101;
+    cursor: not-allowed;
+}
